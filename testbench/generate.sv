@@ -1,9 +1,12 @@
 // The generator class is used to generate a random
 // number of transactions with random addresses and data
 // that can be driven to the design
+
+// transaction ，就是 测试条目嘛 ， 随机生成的
+
 class generator;
   mailbox drv_mbx;
-  event drv_done;
+  event drv_done;  // 
   int num = 20;
 
   task run();
@@ -12,7 +15,7 @@ class generator;
       item.randomize();
       $display("T=%0t [Generator] Loop:%0d/%0d create next item", $time, i + 1, num);
       drv_mbx.put(item);
-      @(drv_done);
+      @(drv_done);  // 阻塞，直到 ->drv_done
     end
     $display("T=%0t [Generator] Done generation of %0d items", $time, num);
   endtask

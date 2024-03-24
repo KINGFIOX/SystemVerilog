@@ -4,7 +4,9 @@ module tb;
   reg clk;
 
   always #10 clk = ~clk;
-  switch_if _if (clk);
+
+  switch_if _if (clk);  // 实例化 DUT
+
   switch u0 (
       .clk(clk),
       .rstn(_if.rstn),
@@ -16,16 +18,17 @@ module tb;
       .addr_b(_if.addr_b),
       .data_b(_if.data_b)
   );
-  test t0;
+
+  test t0;  // 测试单元
 
   initial begin
     {clk, _if.rstn} <= 0;
 
     // Apply reset and start stimulus
     #20 _if.rstn <= 1;
-    t0 = new;
+    t0 = new;  // 默认构造
     t0.e0.vif = _if;
-    t0.run();
+    t0.run();  // 运行测试
 
     // Because multiple components and clock are running
     // in the background, we need to call $finish explicitly
@@ -37,4 +40,5 @@ module tb;
     $dumpvars;
     $dumpfile("dump.vcd");
   end
+
 endmodule

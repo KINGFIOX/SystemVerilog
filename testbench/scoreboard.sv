@@ -2,6 +2,9 @@
 // the design routes packets based on an address range, the
 // scoreboard checks that the packet's address is within valid
 // range.
+
+// 计分板
+
 class scoreboard;
   mailbox scb_mbx;
 

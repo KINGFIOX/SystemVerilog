@@ -1,5 +1,7 @@
 // Design interface used to monitor activity and capture/drive
 // transactions
+
+// 定义接口
 interface switch_if (
     input bit clk
 );

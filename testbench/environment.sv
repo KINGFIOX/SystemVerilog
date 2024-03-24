@@ -2,7 +2,13 @@
 // all verification components together. This environment can
 // then be reused later and all components in it would be
 // automatically connected and available for use
+
+// 环境是一个容器对象，简单地将所有的验证组件放在一起。
+// 然后，这个环境可以在以后被重用，所有的组件都会自动连接并可用于使用
+// 这个相当于是一个测试框架
+
 class env;
+
   driver d0;  // Driver handle
   monitor m0;  // Monitor handle
   generator g0;  // Generator Handle
@@ -14,7 +20,10 @@ class env;
 
   virtual switch_if vif;  // Virtual interface handle
 
-  function new();
+  function new();  // 环境的构造函数
+
+    // new 与 new() 的效果是一样的，都是默认构造函数。
+    // 如果一个 class 没有 new ，那么会默认生成
     d0 = new;
     m0 = new;
     g0 = new;
