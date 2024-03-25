@@ -1,6 +1,8 @@
-# README
+# README - what is a testbench
 
-这个仓库是用来学习 SystemVerilog 的。
+这个是测试架构的主体框架
+
+![alt text](image/tb.png)
 
 ## driver 与 monitor 的 mailbox 交互
 

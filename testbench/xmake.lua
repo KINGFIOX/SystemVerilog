@@ -1,11 +1,23 @@
 -- add_rules("mode.debug", "mode.release")
 add_rules("mode.debug")
 
-target("verilog")
+-- target("verilog")
+--     set_kind("binary")
+--     add_files("./*.sv")
+--     add_toolchains("iverilog")
+--     -- add_files("src/*.cpp")
+
+target("sv_project")
     set_kind("binary")
-    add_files("./*.sv")
-    add_toolchains("iverilog")
-    -- add_files("src/*.cpp")
+    add_files("./*.sv") -- 指定SystemVerilog源文件的位置
+    on_build(function (target)
+        import("core.project.config")
+        local sv_files = table.concat(target:sourcefiles(), " ")
+        os.runv("iverilog -o $(buildir)/simv " .. sv_files)
+    end)
+    on_run(function (target)
+        os.exec("$(buildir)/simv")
+    end)
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io
